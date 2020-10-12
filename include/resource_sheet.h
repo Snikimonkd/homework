@@ -17,4 +17,4 @@ resource_sheet_sort(resource_sheet *const unsorted_resource_sheet,
 
 int printf_resource_sheet(const resource_sheet *resource_sheet, FILE *ostream);
 
-#endif  // INCLUDE_RESOURCE_SHEET_H_
+#endif  //  INCLUDE_RESOURCE_SHEET_H_
