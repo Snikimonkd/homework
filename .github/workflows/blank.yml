@@ -6,7 +6,7 @@ name: CI
 # events but only for the main branch
 on:
   push:
-    branches: [ main ] [iz1]
+    branches: [ main, iz1]
   pull_request:
     branches: [ main ]
 
@@ -29,8 +29,9 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: tests
         run: |
+          sudo apt install valgrind
           cd build
           cmake ..
           make
-          ./test/mytest
+          valgrind --leak-check=full ./test/mytest
           
