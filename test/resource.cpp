@@ -4,8 +4,8 @@ extern "C" {
 #include "resource.h"
 }
 
-TEST(resource_lib_test, read_from_stream_test) {
-    FILE *istream = fopen("../test/read_from_stream_test", "r");
+TEST(resource_lib_test, read_from_stream_test_1) {
+    FILE *istream = fopen("../test/read_from_stream_test1", "r");
     EXPECT_EQ(NULL, !istream);
     char *str = read_from_stream(istream);
     EXPECT_STREQ(str, "test");
@@ -13,8 +13,16 @@ TEST(resource_lib_test, read_from_stream_test) {
     fclose(istream);
 }
 
-TEST(resource_lib_test, create_resource_test) {
-    FILE *istream = fopen("../test/create_resource_test", "r");
+TEST(resource_lib_test, read_from_stream_test_2) {
+    FILE *istream = fopen("../test/read_from_stream_test2", "r");
+    EXPECT_EQ(NULL, !istream);
+    char *str = read_from_stream(istream);
+    EXPECT_EQ(NULL, str);
+    fclose(istream);
+}
+
+TEST(resource_lib_test, create_resource_test_1) {
+    FILE *istream = fopen("../test/create_resource_test1", "r");
     EXPECT_EQ(NULL, !istream);
     resource *new_resource = create_resource(istream);
     EXPECT_STREQ(new_resource->chiper, "chiper");
@@ -27,7 +35,47 @@ TEST(resource_lib_test, create_resource_test) {
     fclose(istream);
 }
 
-TEST(resource_lib_test, dynamic_strcpy_test) {
+TEST(resource_lib_test, create_resource_test_2) {
+    FILE *istream = fopen("../test/create_resource_test2", "r");
+    EXPECT_EQ(NULL, !istream);
+    resource *new_resource = create_resource(istream);
+    EXPECT_EQ(NULL, new_resource);
+    fclose(istream);
+}
+
+TEST(resource_lib_test, create_resource_test_3) {
+    FILE *istream = fopen("../test/create_resource_test3", "r");
+    EXPECT_EQ(NULL, !istream);
+    resource *new_resource = create_resource(istream);
+    EXPECT_EQ(NULL, new_resource);
+    fclose(istream);
+}
+
+TEST(resource_lib_test, create_resource_test_4) {
+    FILE *istream = fopen("../test/create_resource_test4", "r");
+    EXPECT_EQ(NULL, !istream);
+    resource *new_resource = create_resource(istream);
+    EXPECT_EQ(NULL, new_resource);
+    fclose(istream);
+}
+
+TEST(resource_lib_test, create_resource_test_5) {
+    FILE *istream = fopen("../test/create_resource_test5", "r");
+    EXPECT_EQ(NULL, !istream);
+    resource *new_resource = create_resource(istream);
+    EXPECT_EQ(NULL, new_resource);
+    fclose(istream);
+}
+
+TEST(resource_lib_test, create_resource_test_6) {
+    FILE *istream = fopen("../test/create_resource_test5", "r");
+    EXPECT_EQ(NULL, !istream);
+    resource *new_resource = create_resource(istream);
+    EXPECT_EQ(NULL, new_resource);
+    fclose(istream);
+}
+
+TEST(resource_lib_test, dynamic_strcpy_test_1) {
     char *const src = {"test"};
     char *dst = NULL;
     int er = dynamic_strcpy(&dst, &src);
@@ -35,6 +83,14 @@ TEST(resource_lib_test, dynamic_strcpy_test) {
     EXPECT_EQ(NULL, !dst);
     EXPECT_STREQ(dst, src);
     free(dst);
+}
+
+TEST(resource_lib_test, dynamic_strcpy_test_2) {
+    char *const src = NULL;
+    char *dst = NULL;
+    int er = dynamic_strcpy(&dst, &src);
+    EXPECT_EQ(-1, er);
+    EXPECT_EQ(NULL, dst);
 }
 
 TEST(resource_lib_test, copy_resource_test) {

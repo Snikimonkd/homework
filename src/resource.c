@@ -19,6 +19,12 @@ resource *create_resource(FILE *istream) {
         return NULL;
     }
 
+    new_resource->chiper = NULL;
+    new_resource->name = NULL;
+    new_resource->amount = NULL;
+    new_resource->units = NULL;
+    new_resource->materials = NULL;
+
     if ((new_resource->chiper = read_from_stream(istream)) == NULL) {
         free_resource(new_resource);
         free(new_resource);
@@ -98,6 +104,9 @@ void free_resource(resource *resource) {
 }
 
 int dynamic_strcpy(char **dst, char *const *src) {
+    if (*src == NULL) {
+        return -1;
+    }
     *dst = malloc((strlen(*src) + 1) * sizeof(char));
     if (*dst == NULL) {
         return -1;

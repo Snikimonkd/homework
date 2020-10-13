@@ -30,4 +30,3 @@ add_executable(mytest  main.cpp resource.cpp resource_sheet.cpp)
 target_link_libraries(mytest gtest_main resource resource_sheet)
 
 add_test(NAME unit COMMAND mytest)
-
