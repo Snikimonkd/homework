@@ -59,6 +59,18 @@ resource *create_resource(FILE *istream) {
 }
 
 int copy_resource(resource *new_resource, const resource *old_resource) {
+    if (old_resource == NULL) {
+        return -1;
+    }
+    if (new_resource == NULL) {
+        return -1;
+    }
+    new_resource->chiper = NULL;
+    new_resource->name = NULL;
+    new_resource->amount = NULL;
+    new_resource->materials = NULL;
+    new_resource->units = NULL;
+
     if (dynamic_strcpy(&new_resource->chiper, &old_resource->chiper) == -1) {
         return -1;
     }

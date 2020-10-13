@@ -93,7 +93,7 @@ TEST(resource_lib_test, dynamic_strcpy_test_2) {
     EXPECT_EQ(NULL, dst);
 }
 
-TEST(resource_lib_test, copy_resource_test) {
+TEST(resource_lib_test, copy_resource_test_1) {
     resource *src = new (resource);
     src->chiper = {"chiper"};
     src->name = {"name"};
@@ -109,6 +109,94 @@ TEST(resource_lib_test, copy_resource_test) {
     EXPECT_STREQ(dst->units, "units");
     EXPECT_STREQ(dst->materials, "materials");
     free_resource(dst);
+    delete (src);
+    delete (dst);
+}
+
+TEST(resource_lib_test, copy_resource_test_2) {
+    resource *src = new (resource);
+    src->chiper = {"chiper"};
+    src->name = {"name"};
+    src->amount = {"amount"};
+    src->units = {"units"};
+    src->materials = NULL;
+    resource *dst = new (resource);
+    int er = copy_resource(dst, src);
+    EXPECT_EQ(er, -1);
+    delete (src);
+    delete (dst);
+}
+
+TEST(resource_lib_test, copy_resource_test_3) {
+    resource *src = new (resource);
+    src->chiper = {"chiper"};
+    src->name = {"name"};
+    src->amount = {"amount"};
+    src->units = NULL;
+    src->materials = NULL;
+    resource *dst = new (resource);
+    int er = copy_resource(dst, src);
+    EXPECT_EQ(er, -1);
+    delete (src);
+    delete (dst);
+}
+
+TEST(resource_lib_test, copy_resource_test_4) {
+    resource *src = new (resource);
+    src->chiper = {"chiper"};
+    src->name = {"name"};
+    src->amount = NULL;
+    src->units = NULL;
+    src->materials = NULL;
+    resource *dst = new (resource);
+    int er = copy_resource(dst, src);
+    EXPECT_EQ(er, -1);
+    delete (src);
+    delete (dst);
+}
+
+TEST(resource_lib_test, copy_resource_test_5) {
+    resource *src = new (resource);
+    src->chiper = {"chiper"};
+    src->name = NULL;
+    src->amount = NULL;
+    src->units = NULL;
+    src->materials = NULL;
+    resource *dst = new (resource);
+    int er = copy_resource(dst, src);
+    EXPECT_EQ(er, -1);
+    delete (src);
+    delete (dst);
+}
+
+TEST(resource_lib_test, copy_resource_test_6) {
+    resource *src = new (resource);
+    src->chiper = NULL;
+    src->name = NULL;
+    src->amount = NULL;
+    src->units = NULL;
+    src->materials = NULL;
+    resource *dst = new (resource);
+    int er = copy_resource(dst, src);
+    EXPECT_EQ(er, -1);
+    delete (src);
+    delete (dst);
+}
+
+TEST(resource_lib_test, copy_resource_test_7) {
+    resource *src = NULL;
+    resource *dst = new (resource);
+    int er = copy_resource(dst, src);
+    EXPECT_EQ(er, -1);
+    delete (src);
+    delete (dst);
+}
+
+TEST(resource_lib_test, copy_resource_test_8) {
+    resource *src = new (resource);
+    resource *dst = NULL;
+    int er = copy_resource(dst, src);
+    EXPECT_EQ(er, -1);
     delete (src);
     delete (dst);
 }
