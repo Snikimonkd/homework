@@ -8,6 +8,6 @@ echo -e "\n***** ${1} *****"
 }
 
 print_header "RUN cpplint.py"
-python2.7 ./linters/cpplint/cpplint.py —extensions=c —headers=h,hpp —filter=-runtime/references,-legal/copyright,-build/include_subdir,-whitespace/line_length project/include/* project/src/*
+python2.7 ./build/linters/cpplint/cpplint.py —extensions=c —headers=h,hpp —filter=-runtime/references,-legal/copyright,-build/include_subdir,-whitespace/line_length project/include/* project/src/*
 
 print_header "SUCCESS"
