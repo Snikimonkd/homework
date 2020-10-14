@@ -11,7 +11,7 @@ print_header "RUN cppcheck"
 if [ "${1}" == "--local" ]; then
 	CPPCHECK="cppcheck"
 else
-	CPPCHECK="./linters/cppcheck/cppcheck"
+	CPPCHECK="./build/linters/cppcheck/cppcheck"
 fi
 ${CPPCHECK} project --enable=all --error-exitcode=1 -I project/include --suppress=missingIncludeSystem # --check-config
 
