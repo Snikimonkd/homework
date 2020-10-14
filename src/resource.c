@@ -13,7 +13,7 @@ char *read_from_stream(FILE *istream) {
 }
 
 resource *create_resource(FILE *istream) {
-    resource *new_resource = malloc(sizeof(resource));
+    resource *new_resource = (resource *)malloc(sizeof(resource));
     if (new_resource == NULL) {
         free(new_resource);
         return NULL;
@@ -119,7 +119,7 @@ int dynamic_strcpy(char **dst, char *const *src) {
     if (*src == NULL) {
         return -1;
     }
-    *dst = malloc((strlen(*src) + 1) * sizeof(char));
+    *dst = (char *)malloc((strlen(*src) + 1) * sizeof(char));
     if (*dst == NULL) {
         return -1;
     }

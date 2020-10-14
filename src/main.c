@@ -21,6 +21,7 @@ int main() {
     resource_sheet *sorted_resource_sheet =
         resource_sheet_sort(new_resource_sheet, istream);
     if (sorted_resource_sheet == NULL) {
+        free_resource_sheet(new_resource_sheet);
         free(new_resource_sheet);
         fclose(ostream);
         fclose(istream);

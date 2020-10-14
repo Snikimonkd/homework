@@ -9,12 +9,14 @@ resource_sheet *create_resource_sheet(FILE *istream) {
         return NULL;
     }
 
-    resource_sheet *new_resource_sheet = malloc(sizeof(resource_sheet));
+    resource_sheet *new_resource_sheet =
+        (resource_sheet *)malloc(sizeof(resource_sheet));
     if (new_resource_sheet == NULL) {
         return NULL;
     }
 
-    new_resource_sheet->resources_array = malloc(i * sizeof(resource));
+    new_resource_sheet->resources_array =
+        (resource *)malloc(i * sizeof(resource));
     if (new_resource_sheet->resources_array == NULL) {
         free(new_resource_sheet);
         return NULL;
@@ -60,14 +62,15 @@ resource_sheet_sort(resource_sheet *const unsorted_resource_sheet,
         return NULL;
     }
 
-    resource_sheet *new_resource_sheet = malloc(sizeof(resource_sheet));
+    resource_sheet *new_resource_sheet =
+        (resource_sheet *)malloc(sizeof(resource_sheet));
     if (new_resource_sheet == NULL) {
         free(criterion);
         return NULL;
     }
 
-    new_resource_sheet->resources_array =
-        malloc(unsorted_resource_sheet->quantity * sizeof(resource));
+    new_resource_sheet->resources_array = (resource *)malloc(
+        unsorted_resource_sheet->quantity * sizeof(resource));
     if (unsorted_resource_sheet->resources_array == NULL) {
         free(criterion);
         free(new_resource_sheet);
@@ -103,4 +106,5 @@ int printf_resource_sheet(const resource_sheet *resource_sheet, FILE *ostream) {
             return -1;
         }
     }
+    return 0;
 }
