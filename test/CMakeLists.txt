@@ -5,7 +5,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/test)
 ################################
 # GTest
 ################################
-project(googletest-git NONE)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -20,13 +19,22 @@ set(BUILD_GTEST ON CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(googletest)
 
-################################
-# Tests
-################################
-# Add test cpp file
+include_directories("${PROJECT_SOURCE_DIR}/include")
 
-add_executable(mytest  main.cpp resource.cpp resource_sheet.cpp)
+file(GLOB sources "${PROJECT_SOURCE_DIR}/src/*.c")
+list(REMOVE_ITEM sources "${PROJECT_SOURCE_DIR}/src/main.c")
 
-target_link_libraries(mytest gtest_main resource resource_sheet)
+file(GLOB tests "${PROJECT_SOURCE_DIR}/test/*.cpp")
+list(REMOVE_ITEM tests "${PROJECT_SOURCE_DIR}/test/main.cpp")
 
-add_test(NAME unit COMMAND mytest)
+
+foreach(file ${tests})
+  set(name)
+  get_filename_component(name ${file} NAME_WE)
+  add_executable("${name}_tests"
+    ${sources}
+    ${file}
+    "${PROJECT_SOURCE_DIR}/test/main.cpp")
+  target_link_libraries("${name}_tests" gtest gtest_main)
+  add_test(NAME ${name} COMMAND "${name}_tests")
+endforeach()
