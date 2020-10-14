@@ -38,3 +38,26 @@ foreach(file ${tests})
   target_link_libraries("${name}_tests" gtest gtest_main)
   add_test(NAME ${name} COMMAND "${name}_tests")
 endforeach()
+
+add_definitions(-fprofile-arcs -ftest-coverage)
+
+add_custom_target(gcov
+    COMMAND mkdir -p gcoverage
+    COMMAND ${CMAKE_MAKE_PROGRAM} test
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
+add_custom_command(TARGET gcov
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/gcoverage
+)
+
+add_custom_target(lcov
+    COMMAND mkdir -p lcoverage
+    )
+add_custom_command(TARGET lcov
+    COMMAND lcov --capture --directory ../ --output-file lcoverage/main_coverage.info
+    COMMAND genhtml lcoverage/main_coverage.info --output-directory lcoverage
+)
+
+set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES gcoverage)
+
+target_link_libraries(gtest_main -fprofile-arcs)
