@@ -45,7 +45,8 @@ jobs:
           cd build
           make gcov
           make lcov
-          find . -name index
+          ls
+          find . -name index.html
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:
