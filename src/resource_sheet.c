@@ -72,7 +72,7 @@ resource_sheet_sort(resource_sheet *const unsorted_resource_sheet,
 
     new_resource_sheet->resources_array = (resource *)malloc(
         unsorted_resource_sheet->quantity * sizeof(resource));
-    if (unsorted_resource_sheet->resources_array == NULL) {
+    if (new_resource_sheet->resources_array == NULL) {
         free(criterion);
         free(new_resource_sheet);
         return NULL;
