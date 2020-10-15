@@ -55,8 +55,8 @@ TEST(resource_lib_test, resource_sheet_sort_test_1) {
     EXPECT_STREQ(new_resource_sheet->resources_array->amount, "amount");
     EXPECT_STREQ(new_resource_sheet->resources_array->units, "units");
     EXPECT_STREQ(new_resource_sheet->resources_array->materials, "materials");
-    delete (sorted_resource_sheet);
-    delete (new_resource_sheet);
+    free_resource_sheet(sorted_resource_sheet);
+    free_resource_sheet(new_resource_sheet);
     fclose(istream);
 }
 
@@ -71,6 +71,6 @@ TEST(resource_lib_test, resource_sheet_sort_test_2) {
     fseek(istream, 0, 0);
     resource_sheet *new_resource_sheet = create_resource_sheet(istream);
     EXPECT_EQ(resource_sheet_sort(new_resource_sheet, istream), nullptr);
-    delete (new_resource_sheet);
+    free_resource_sheet(new_resource_sheet);
     fclose(istream);
 }

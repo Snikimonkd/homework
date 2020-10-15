@@ -27,7 +27,8 @@ resource_sheet *create_resource_sheet(FILE *istream) {
     while (j < i) {
         resource *new_resource = create_resource(istream);
         if (new_resource == NULL) {
-            free_resource_sheet(new_resource_sheet);
+            free(new_resource_sheet->resources_array);
+            free(new_resource_sheet);
             return NULL;
         }
 
