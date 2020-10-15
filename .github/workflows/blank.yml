@@ -45,6 +45,7 @@ jobs:
           cd build
           make gcov
           make lcov
+          found . -name index
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:
