@@ -28,18 +28,18 @@ jobs:
         run: cd src && cppcheck *.c
       - name: install valgrind
         run: sudo apt install valgrind
-      - name: install gcovr and lcov
-        run: |
-          sudo apt install gcovr
-          sudo apt install lcov
       - name: build
         run: |
           mkdir build
           cd build
           cmake ..
           make
-      - name: test
+      - name: tests
         run: valgrind --leak-check=full ctest
+      - name: install gcovr and lcov
+        run: |
+          sudo apt install gcovr
+          sudo apt install lcov
       - name: coverage
         run: |
           cd build
