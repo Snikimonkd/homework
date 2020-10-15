@@ -24,17 +24,21 @@ jobs:
       # Runs a single command using the runners shell
       - name: install linters
         run: sudo apt-get install -y cppcheck
-      - name: tun linters
-        run: cd src && cppcheck *.c
-      # Runs a set of commands using the runners shell
-      - name: tests
+      - name: install valgrind
+        run: sudo apt install valgrind
+      - name: install gcovr and lcov
         run: |
-          sudo apt install valgrind
           sudo apt install gcovr
           sudo apt install lcov
+      - name: build
+        run: |
+          mkdir build
           cd build
           cmake ..
           make
-          valgrind --leak-check=full ctest
+      - name: test
+        run: valgrind --leak-check=full ctest
+      - name: coverage
+        run: |
           make gcov
           make lcov
