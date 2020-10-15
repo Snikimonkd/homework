@@ -34,4 +34,5 @@ jobs:
           cmake ..
           make
           valgrind --leak-check=full ctest
-          
+          make gcov
+          make lcov
