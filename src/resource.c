@@ -75,12 +75,12 @@ int copy_resource(resource *new_resource, const resource *old_resource) {
         return -1;
     }
 
-    if (dynamic_strcpy(&new_resource->amount, &old_resource->amount) == -1) {
+    if (dynamic_strcpy(&new_resource->name, &old_resource->name) == -1) {
         free_resource(new_resource);
         return -1;
     }
 
-    if (dynamic_strcpy(&new_resource->name, &old_resource->name) == -1) {
+    if (dynamic_strcpy(&new_resource->amount, &old_resource->amount) == -1) {
         free_resource(new_resource);
         return -1;
     }
