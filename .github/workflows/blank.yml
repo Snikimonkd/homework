@@ -45,8 +45,9 @@ jobs:
           cd build
           make gcov
           make lcov
+          ls
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:
           name: code-coverage-report
-          path: ./test/lcoverage/home/runner/work/homework/homework/src/
+          path: build/test/lcoverage/home/runner/work/homework/homework/src/index.html
