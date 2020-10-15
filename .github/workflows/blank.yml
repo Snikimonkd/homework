@@ -30,6 +30,8 @@ jobs:
       - name: tests
         run: |
           sudo apt install valgrind
+          sudo apt install gcovr
+          sudo apt install lcov
           cd build
           cmake ..
           make
